@@ -55,12 +55,9 @@ LOCATE="/tmp/tarball-grade"
 [ "${#WEEK}" -eq 1 ] && WEEK="0$WEEK" # In case the user inputs one digit number
 [[ ! "$WEEK" =~ ^[0-9]+$ ]] || [ "$WEEK" -lt 0 ] || [ "$WEEK" -gt 11 ] || [ "${#WEEK}" -gt 2 ] && errormsg "The entered week number is invalid (must be in the range of 00 - 11)"
 
-# If LOCATE dir exists, check if it is a directory.
-if [ -e "$LOCATE" ]; then
-    [ -d "$LOCATE" ] || errormsg "$LOCATE already exists and is not a directory"
-    # Remove directories if either mygrade or benchmark directories are empty or doesn't exist or when -r flag is given
-    [ -z "$(ls -A $LOCATE/mygrade 2>/dev/null)" ] || [ -z "$(ls -A $LOCATE/benchmark 2>/dev/null)" ] && REFRESH=1
-    [ -n "$REFRESH" ] && rm -rf "$LOCATE/mygrade" "$LOCATE/benchmark" 
+# Check if LOCATE exists
+if [ -d "$LOCATE" ]; then
+    [ -n "$REFRESH" ] && rm -rf "$LOCATE"
 else
     REFRESH=1
 fi

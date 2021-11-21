@@ -38,7 +38,7 @@ A simple script written to check weekly grades in Operating System course.
 - Changed everything in the README to English.
 - Simplified how to use section.
 - Added some options.
-- Added measure to make sure the user doesn't redownload the tarball everything they want to check a different week. This can be ignored with `-r` option.
+- Added measure to make sure the user doesn't redownload the tarball everytime they want to check a different week or in case when gpg fails to decrypt the user's tarball. This can be ignored with `-r` option.
 
 ### REV04
 - Automatically set the username (with `$USER`).

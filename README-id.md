@@ -38,7 +38,7 @@ Sebuah skrip sederhana untuk mengecek nilai mingguan mata kuliah Sistem Operasi 
 - Mengubah semua di README menjadi bahasa inggris.
 - Menyederhanakan bagian tata cara penggunaan.
 - Menambahkan beberapa opsi.
-- Menambahkan suatu pengecekan agar pengguna tidak perlu mengunduh ulang tarball lagi setiap saat pengguna ingin melihat nilai minggu lain. Pengecekan ini dapat diabaikan menggunakan opsi `-r`. 
+- Menambahkan suatu pengecekan agar pengguna tidak perlu mengunduh ulang tarball lagi setiap saat pengguna ingin melihat nilai minggu lain atau dalam kasus di mana gpg gagal mendekripsi tarball pengguna. Pengecekan ini dapat diabaikan menggunakan opsi `-r`. 
 
 ### REV04
 - Mengubah masukan nama akun pengguna menjadi otomatis (menggunakan skrip `$USER`).
