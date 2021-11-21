@@ -37,7 +37,7 @@ while getopts ":o:w:rh" op; do case "$op" in
     o) OUTPUT="$OPTARG" ;;
     w) WEEK="$OPTARG" ;;
     r) REFRESH=1 ;;
-    h) printf "Available Options:\\n%s\\n%s\\n%s\\n%s\\n%s\\n%s\\n" \
+    h) printf "Available Options:\\n%s\\n%s\\n%s\\n%s\\n" \
            "  -o: Output week grade to file. Optional (usage: -o /path/to/file)" \
            "  -w: The desired week to be checked. Optional (will ask if you don't add this option)" \
            "  -r: Redownload tarballs for updating your grades for all weeks" \
@@ -68,12 +68,12 @@ mkdir -p "$LOCATE/mygrade" "$LOCATE/benchmark"
 # Download mygrade and benchmark
 if [ -n "$REFRESH" ]; then
     echo "Downloading tarballs. Please wait..."
-    [ -e "/tmp/decrypt-fail-$ACCNAME" ] || wget -q https://os.vlsm.org/Log/$ACCNAME.tar.bz2.txt -O /tmp/$ACCNAME.tar.bz2.txt || errormsg "$ACCNAME doesn't exist in the log"
-    [ -e "/tmp/decrypt-fail-$ACCNAME" ] || wget -q https://cbkadal.github.io/os212/SandBox/TARBALL.tar.bz2 -O /tmp/TARBALL.tar.bz2
-    gpg --decrypt /tmp/$ACCNAME.tar.bz2.txt > /tmp/$ACCNAME.tar.bz2 2>/dev/null || { touch /tmp/decrypt-fail-$ACCNAME; errormsg "Failed to decrypt tarball"; }
+    [ -e "/tmp/decrypt-fail" ] || wget -q https://os.vlsm.org/Log/$ACCNAME.tar.bz2.txt -O /tmp/$ACCNAME.tar.bz2.txt || errormsg "$ACCNAME doesn't exist in the log"
+    [ -e "/tmp/decrypt-fail" ] || wget -q https://cbkadal.github.io/os212/SandBox/TARBALL.tar.bz2 -O /tmp/TARBALL.tar.bz2
+    gpg --decrypt /tmp/$ACCNAME.tar.bz2.txt > /tmp/$ACCNAME.tar.bz2 2>/dev/null || { touch /tmp/decrypt-fail; errormsg "Failed to decrypt tarball"; }
     tar -xf /tmp/$ACCNAME.tar.bz2 -C $LOCATE/mygrade
     tar -xf /tmp/TARBALL.tar.bz2 -C $LOCATE/benchmark
-    rm -rf /tmp/decrypt-fail-$ACCNAME
+    rm -rf /tmp/decrypt-fail
 fi
 
 # Print grades
