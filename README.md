@@ -2,20 +2,37 @@
 
 A simple script written to check weekly grades in Operating System course.
 
-> Copyright (C) 2021 Muhammad Athallah
+> Copyright (C) 2021 Muhammad Athallah, Fawzan Fawzi
 
-## Tata Cara Penggunaan
+## How to use
 
-1. Unduh file `myscript.sh`.
-2. Ubah isi `ACCNAME` dengan nama akun GitHub-mu.
-3. Buat folder bernama `tarball-grade` di directory `$HOME` pada Virtual Machine.
-4. Salin file `myscript.sh` ke dalam folder tersebut (dengan menggunakan SCP atau FTP File Manager).<br>
-   ATAU<br>
-   Buat file `myscript.sh` dan copas isi file `myscript.sh`. Don't forget to make it executable (gunakan `chmod +x myscript.sh`).
-5. Jalankan `myscript.sh` dengan menggunakan `./myscript.sh`.
-6. Masukkan week yang ingin dicek (misalkan week 6, maka inputnya adalah `06`).
-7. Voila! Nilaimu akan keluar diikuti dengan benchmark pada week tersebut.
+1. Clone this repository inside your VM
+    ```
+    git clone https://github.com/determinedguy/os-tarball-checker
+    ```
+2. cd into the folder and run `grade.sh` with your github username as the following:
+    ```
+    cd os-tarball-checker
+    ./grade.sh -n [Your Github Username]
+    ```
+3. Enter the week that you want to check (for example week 6. The input should be either "6" or "06").
+4. Voila! Your grade will be printed out alongside with the benchmark for that week.
+5. To update your grade for the upcoming weeks, append `-r` to the options.
+    ```
+    ./grade.sh -n [Your Github Username] -r
+    ```
 
-## Lisensi
+## All available options
 
-Kode `myscript.sh` memiliki lisensi [AGPL-3.0 License](LICENSE).
+| OPTIONS: | DESCRIPTION: |
+|:---------|:-------------|
+| -n       | Specify the Github user (Default: determinedguy)                                   |
+| -l       | Specify the extracted grade location (Default: ~/tarball-grade)                    |
+| -o       | Output grade to file. Optional (Usage: -o /path/to/file)                           |
+| -w       | The desired week to be checked. Optional (will ask if you don't add this option)   |
+| -r       | Redownload tarballs for updating your grades for all weeks                         |
+| -h       | Show this help                                                                     |
+
+## License
+
+The `grade.sh` script has the license of [AGPL-3.0 License](LICENSE).
