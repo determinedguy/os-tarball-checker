@@ -6,6 +6,32 @@ Sebuah skrip sederhana untuk mengecek nilai mingguan mata kuliah Sistem Operasi 
 
 > Copyright (C) 2021 Muhammad Athallah, Fawzan Fawzi
 
+## Tata Cara Penggunaan
+
+1. Klon repository ini ke dalam VM anda.
+    ```
+    git clone https://github.com/determinedguy/os-tarball-checker
+    ```
+2. cd ke `os-tarball-checker` dan jalankan skrip `tarball-checker.sh` dengan menggunakan perintah sebagai berikut: 
+    ```
+    ./tarball-checker.sh
+    ```
+3. Masukkan minggu yang ingin dicek detail nilainya (misalkan minggu ke-6, maka masukannya adalah `6` atau `06`).
+4. Voila! Nilaimu akan keluar diikuti dengan _benchmark_ pada minggu tersebut.
+5. Untuk mengupdate nilai anda untuk minggu selanjutnya, tambahkan opsi `-r`.
+    ```
+    ./tarball-checker.sh -r
+    ```
+
+## Semua Pilihan Opsi
+
+| OPTIONS: | DESCRIPTION: |
+|:---------|:-------------|
+| -o       | Keluarkan nilai mingguan ke file. Opsional (Penggunaan: -o /path/ke/file)                  |
+| -w       | Minggu yang ingin dicek. Opsional (akan ditanyakan jika anda tidak menggunakan opsi ini)   |
+| -r       | Mengunduh ulang tarball untuk mengupdate semua nilai mingguan                              |
+| -h       | Tampilkan bantuan ini                                                                      |
+
 ## Changelog
 
 ### REV05
@@ -24,24 +50,7 @@ Sebuah skrip sederhana untuk mengecek nilai mingguan mata kuliah Sistem Operasi 
 
 ### REV02
 - Mengubah masukan minggu yang ingin dicek menjadi masukan interaktif (tidak _hard-coded_).
-
-## Tata Cara Penggunaan
-
-1. Klon repository ini ke dalam VM anda.
-    ```
-    git clone https://github.com/determinedguy/os-tarball-checker
-    ```
-2. cd ke `os-tarball-checker` dan jalankan skrip `tarball-checker.sh` dengan menggunakan perintah sebagai berikut: 
-    ```
-    ./tarball-checker.sh
-    ```
-3. Masukkan minggu yang ingin dicek detail nilainya (misalkan minggu ke-6, maka masukannya adalah `6` atau `06`).
-4. Voila! Nilaimu akan keluar diikuti dengan _benchmark_ pada minggu tersebut.
-5. Untuk mengupdate nilai anda untuk minggu selanjutnya, tambahkan opsi `-r`.
-    ```
-    ./grade.sh -r
-    ```
-
+ 
 ## Lisensi
 
 Kode `tarball-checker.sh` memiliki lisensi [AGPL-3.0 License](LICENSE).

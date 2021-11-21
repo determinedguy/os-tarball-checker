@@ -12,7 +12,7 @@ A simple script written to check weekly grades in Operating System course.
     ```
     git clone https://github.com/determinedguy/os-tarball-checker
     ```
-2. cd into `os-tarball-checker` and run `grade.sh` with the following command:
+2. cd into `os-tarball-checker` and run `tarball-checker.sh` with the following command:
     ```
     ./tarball-checker.sh
     ```
@@ -20,14 +20,14 @@ A simple script written to check weekly grades in Operating System course.
 4. Voila! Your grade will be printed out alongside with the _benchmark_ for that week.
 5. To update your grade for the upcoming weeks, append `-r` to the options.
     ```
-    ./grade.sh -r
+    ./tarball-checker.sh -r
     ```
  
 ## All Available Options
 
 | OPTIONS: | DESCRIPTION: |
 |:---------|:-------------|
-| -o       | Output the grade for the week to file. Optional (Usage: -o /path/to/file)                      |
+| -o       | Output the grade for the week to file. Optional (Usage: -o /path/to/file)          |
 | -w       | The desired week to be checked. Optional (will ask if you don't add this option)   |
 | -r       | Redownload tarballs for updating your grades for all weeks                         |
 | -h       | Show this help                                                                     |
