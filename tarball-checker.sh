@@ -5,7 +5,9 @@
 # useful, but WITHOUT ANY WARRANTY; without even the implied
 # warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
-# REV03 Sun 21 Nov 2021 16:00:00 WIB
+# REV05 Sun 21 Nov 2021 19:00:00 WIB
+# REV04 Sun 21 Nov 2021 18:29:25 WIB
+# REV03 Sun 21 Nov 2021 16:45:48 WIB
 # REV02 Tue 19 Oct 2021 13:30:00 WIB
 # REV01 Tue 19 Oct 2021 12:40:50 WIB
 # START Tue 19 Oct 2021 11:02:45 WIB
@@ -31,17 +33,13 @@ printgrades() {
 }
 
 # Getting the options
-while getopts ":n:l:o:w:rh" op; do case "$op" in
-    n) ACCNAME="$OPTARG";;
-    l) LOCATE="$OPTARG" ;;
+while getopts ":o:w:rh" op; do case "$op" in
     o) OUTPUT="$OPTARG" ;;
     w) WEEK="$OPTARG" ;;
     r) REFRESH=1 ;;
     h) printf "Available Options:\\n%s\\n%s\\n%s\\n%s\\n%s\\n%s\\n" \
-           "  -n: Specify the Github user (Default: determinedguy)" \
-           "  -l: Specify the extracted grade location (Default: ~/tarball-grade)" \
            "  -o: Output week grade to file. Optional (usage: -o /path/to/file)" \
-           "  -w: The desired week to be checked in two-digit format, optional (will ask if you don't add this option)" \
+           "  -w: The desired week to be checked. Optional (will ask if you don't add this option)" \
            "  -r: Redownload tarballs for updating your grades for all weeks" \
            "  -h: Show this help and exit"
        exit 0;;
@@ -49,8 +47,8 @@ while getopts ":n:l:o:w:rh" op; do case "$op" in
 esac done
 
 # Basic variables
-[ -z "$ACCNAME" ] && ACCNAME="determinedguy"
-[ -z "$LOCATE" ] && LOCATE="$HOME/tarball-grade"
+ACCNAME="$USER"
+LOCATE="/tmp/tarball-grade"
 [ -z "$WEEK" ] && read -p "Please enter the desired week to be checked: " WEEK
 
 # Error handling
