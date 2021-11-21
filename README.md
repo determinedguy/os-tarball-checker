@@ -10,7 +10,7 @@ A simple script written to check weekly grades in Operating System course.
     ```
     git clone https://github.com/determinedguy/os-tarball-checker
     ```
-2. cd into the folder and run `grade.sh` with your github username as the following:
+2. cd into the repo directory and run `grade.sh` with your github username like the following commands.  
     ```
     cd os-tarball-checker
     ./grade.sh -n [Your Github Username]
@@ -28,7 +28,7 @@ A simple script written to check weekly grades in Operating System course.
 |:---------|:-------------|
 | -n       | Specify the Github user (Default: determinedguy)                                   |
 | -l       | Specify the extracted grade location (Default: ~/tarball-grade)                    |
-| -o       | Output grade to file. Optional (Usage: -o /path/to/file)                           |
+| -o       | Output week grade to file. Optional (Usage: -o /path/to/file)                      |
 | -w       | The desired week to be checked. Optional (will ask if you don't add this option)   |
 | -r       | Redownload tarballs for updating your grades for all weeks                         |
 | -h       | Show this help                                                                     |

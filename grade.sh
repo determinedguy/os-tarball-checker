@@ -38,13 +38,14 @@ while getopts ":n:l:o:w:rh" op; do case "$op" in
     w) WEEK="$OPTARG" ;;
     r) REFRESH=1 ;;
     h) printf "Available Options:\\n%s\\n%s\\n%s\\n%s\\n%s\\n%s\\n" \
-           "  -n: Github User (Default: determinedguy)" \
-           "  -l: Extracted grade location (Default: ~/tarball-grade)" \
-           "  -o: Output grade to file. Optional (usage: -o /path/to/file)" \
+           "  -n: Specify the Github user (Default: determinedguy)" \
+           "  -l: Specify the extracted grade location (Default: ~/tarball-grade)" \
+           "  -o: Output week grade to file. Optional (usage: -o /path/to/file)" \
            "  -w: The desired week to be checked in two-digit format, optional (will ask if you don't add this option)" \
            "  -r: Redownload tarballs for updating your grades for all weeks" \
            "  -h: Show this help and exit"
        exit 0;;
+    *) printf "Invalid option: -%s\\nUse -h to see available options\\n" "${OPTARG}" && exit 1 ;;
 esac done
 
 # Basic variables
@@ -54,7 +55,7 @@ esac done
 
 # Error handling
 [ "${#WEEK}" -eq 1 ] && WEEK="0$WEEK" # In case the user inputs one digit number
-[ "$WEEK" -lt 0 ] || [ "$WEEK" -gt 11 ] || [ "${#WEEK}" -gt 2 ] && errormsg "The entered week number is invalid (must be between 00 - 11)"
+[[ ! "$WEEK" =~ ^[0-9]+$ ]] || [ "$WEEK" -lt 0 ] || [ "$WEEK" -gt 11 ] || [ "${#WEEK}" -gt 2 ] && errormsg "The entered week number is invalid (must be in the range of 00 - 11)"
 
 # If LOCATE dir exists, check if it is a directory.
 if [ -e "$LOCATE" ]; then
@@ -72,12 +73,12 @@ mkdir -p "$LOCATE/mygrade" "$LOCATE/benchmark"
 # Download mygrade and benchmark
 if [ -n "$REFRESH" ]; then
     echo "Downloading tarballs. Please wait..."
-    [ -e "/tmp/decrypt-fail" ] || wget -q https://os.vlsm.org/Log/$ACCNAME.tar.bz2.txt -O /tmp/$ACCNAME.tar.bz2.txt || errormsg "$ACCNAME doesn't exist in the log"
-    [ -e "/tmp/decrypt-fail" ] || wget -q https://cbkadal.github.io/os212/SandBox/TARBALL.tar.bz2 -O /tmp/TARBALL.tar.bz2
-    gpg --decrypt /tmp/$ACCNAME.tar.bz2.txt > /tmp/$ACCNAME.tar.bz2 2>/dev/null || { touch /tmp/decrypt-fail; errormsg "Failed to decrypt tarball"; }
+    [ -e "/tmp/decrypt-fail-$ACCNAME" ] || wget -q https://os.vlsm.org/Log/$ACCNAME.tar.bz2.txt -O /tmp/$ACCNAME.tar.bz2.txt || errormsg "$ACCNAME doesn't exist in the log"
+    [ -e "/tmp/decrypt-fail-$ACCNAME" ] || wget -q https://cbkadal.github.io/os212/SandBox/TARBALL.tar.bz2 -O /tmp/TARBALL.tar.bz2
+    gpg --decrypt /tmp/$ACCNAME.tar.bz2.txt > /tmp/$ACCNAME.tar.bz2 2>/dev/null || { touch /tmp/decrypt-fail-$ACCNAME; errormsg "Failed to decrypt tarball"; }
     tar -xf /tmp/$ACCNAME.tar.bz2 -C $LOCATE/mygrade
     tar -xf /tmp/TARBALL.tar.bz2 -C $LOCATE/benchmark
-    rm -rf /tmp/decrypt-fail
+    rm -rf /tmp/decrypt-fail-$ACCNAME
 fi
 
 # Print grades
