@@ -1,35 +1,56 @@
 # os-tarball-checker
 
-> **LAST REVISION**: `REV04 Sun 21 Nov 2021 18:29:25 WIB`
+> **LAST REVISION**: `REV05 Sun 21 Nov 2021 19:00:00 WIB`
 
-Sebuah skrip sederhana untuk mengecek nilai mingguan mata kuliah Sistem Operasi (OS).
+A simple script written to check weekly grades in Operating System course.
 
-> Copyright (C) 2021 Muhammad Athallah
+> Copyright (C) 2021 Muhammad Athallah, Fawzan Fawzi
 
-## CHANGELOG
+## How To Use
+
+1. Clone this repository inside your VM.
+    ```
+    git clone https://github.com/determinedguy/os-tarball-checker
+    ```
+2. cd into `os-tarball-checker` and run `tarball-checker.sh` with the following command:
+    ```
+    ./tarball-checker.sh
+    ```
+3. Enter the week that you want to check (for example week 6. The input should be either `6` or `06`).
+4. Voila! Your grade will be printed out alongside with the _benchmark_ for that week.
+5. To update your grade for the upcoming weeks, append `-r` to the options.
+    ```
+    ./tarball-checker.sh -r
+    ```
+ 
+## All Available Options
+
+| OPTIONS: | DESCRIPTION: |
+|:---------|:-------------|
+| -o       | Output the grade for the week to file. Optional (Usage: -o /path/to/file)          |
+| -w       | The desired week to be checked. Optional (will ask if you don't add this option)   |
+| -r       | Redownload tarballs for updating your grades for all weeks                         |
+| -h       | Show this help                                                                     |
+
+## Changelog
+
+### REV05
+- Changed everything in the README to English.
+- Simplified how to use section.
+- Added some options.
+- Added measure to make sure the user doesn't redownload the tarball everytime they want to check a different week or in case when gpg fails to decrypt the user's tarball. This can be ignored with `-r` option.
 
 ### REV04
-- Mengubah masukan nama akun pengguna menjadi otomatis (menggunakan skrip `$USER`).
+- Automatically set the username (with `$USER`).
 
 ### REV03
-- Mengubah nama skrip menjadi `tarball-checker.sh`.
-- Mengubah tujuan direktori file tarball menjadi `/tmp/tarball-checker`, sehingga tidak mengotori direktori pengguna dan menambah fleksibilitas lokasi penempatan skrip (dapat ditaruh di folder mana saja, tidak harus dalam `$HOME/tarball-grade`).
-- Mengubah masukan nama akun pengguna menjadi masukan interaktif (tidak _hard-coded_).
+- Renamed script to `tarball-checker.sh`.
+- Changed target directory to `/tmp/tarball-checker` so that the script doesn't add more junks to the user's home dir and increase the flexibility of the script (can be put in any folder. It doesn't have to be in `~/tarball-grade`).
+- Changed the input username into an interactive input (not _hard-coded_).
 
 ### REV02
-- Mengubah masukan minggu yang ingin dicek menjadi masukan interaktif (tidak _hard-coded_).
+- Changed the input for the desired week into an interactive input (not _hard-coded_).
 
-## Tata Cara Penggunaan
+## License
 
-1. Unduh file `tarball-checker.sh` di dalam mesin virtual.<br>
-   ATAU<br>
-   Unduh file `tarball-checker.sh` pada komputer utama lalu salin file tersebut ke dalam mesin virtual (dengan menggunakan SCP atau FTP File Manager).<br>
-   ATAU<br>
-   Buat file `tarball-checker.sh` dan salin kode skrip dari `tarball-checker.sh` yang ada dalam repositori ini ke dalam file tersebut. Jangan lupa untuk mengatur file tersebut menjadi _executable_  (gunakan perintah `chmod +x tarball-checker.sh`).
-2. Jalankan skrip `tarball-checker.sh` dengan menggunakan perintah `./tarball-checker.sh`.
-3. Masukkan minggu yang ingin dicek detail nilainya (misalkan minggu ke-6, maka masukannya adalah `06`).
-4. Voila! Nilaimu akan keluar diikuti dengan _benchmark_ pada minggu tersebut.
-
-## Lisensi
-
-Kode `tarball-checker.sh` memiliki lisensi [AGPL-3.0 License](LICENSE).
+The `tarball-checker.sh` script has the license of [AGPL-3.0 License](LICENSE).
